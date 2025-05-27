@@ -8,24 +8,36 @@
 #include "meminfo.h"
 
 #define MAX_LINE_LENGTH 256
+// 内存池初始化（封装内部实现，外部不可见）
+static bool parser_initialized  = false;
+
 bool init_parser() {
+    if (parser_initialized) return true;
+
     init_memory_pool();
+    parser_initialized = true;
     return true;
 }
 // 解析/proc/meminfo文件
-void parse_meminfo(MemInfo *info) {
+bool parse_meminfo(MemInfo *info) {
+    if (!parser_initialized ) {
+        fprintf(stderr, "Memory pool not initialized\n");
+        return false;
+    }
+
     FILE *fp = fopen("/proc/meminfo", "r");
     if (fp == NULL) {
         perror("Failed to open /proc/meminfo");
-        exit(EXIT_FAILURE);
+        return false;
     }
 
-    // 使用内存池分配的缓冲区
     char *line = (char*)pool_alloc(MAX_LINE_LENGTH);
     if (!line) {
         fprintf(stderr, "Memory allocation failed\n");
-        exit(EXIT_FAILURE);
+        fclose(fp);
+        return false;
     }
+    memset(info, 0, sizeof(MemInfo)); // 初始化结构体
 
     while (fgets(line, MAX_LINE_LENGTH, fp) != NULL) {
         char key[64];
@@ -141,6 +153,7 @@ void parse_meminfo(MemInfo *info) {
     // 释放内存池分配的缓冲区
     pool_free(line);
     fclose(fp);
+    return true;
 }
 
 // 转换为人类可读格式

@@ -4,15 +4,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "memory_pool.h"
 #include "meminfo.h"
 
 int main(int argc, char *argv[]) {
-    // 初始化内存池
-    init_parser();
+    // 初始化内存池并检查状态
+    if (!init_parser()) {
+        return EXIT_FAILURE; // 初始化失败，直接退出
+    }
 
     MemInfo info = {0};
-    parse_meminfo(&info);
+    if (!parse_meminfo(&info)) { // 增加解析结果判断
+        return EXIT_FAILURE;
+    }
 
     // 检查命令行参数
     int human_readable = 0;
@@ -41,5 +44,5 @@ int main(int argc, char *argv[]) {
         print_kb_format(&info);
     }
 
-    return 0;
+    return EXIT_SUCCESS;
 }

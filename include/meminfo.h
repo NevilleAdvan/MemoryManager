@@ -63,7 +63,7 @@ typedef struct {
 
 bool init_parser();
 // 解析/proc/meminfo文件
-void parse_meminfo(MemInfo *info);
+bool parse_meminfo(MemInfo *info);
 
 // 打印内存信息（KB格式）
 void print_kb_format(const MemInfo *info);
