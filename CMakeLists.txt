@@ -8,4 +8,4 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 add_subdirectory(ProcessMemoryMonitor)
-add_subdirectory(SystemMemeryManager)
+add_subdirectory(SystemMemoryManager)
