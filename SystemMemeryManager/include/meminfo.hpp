@@ -1,8 +1,8 @@
 //
 // Created by Luxiantai on 25-5-27.
 //
-#ifndef MEMINFO_H
-#define MEMINFO_H
+#ifndef MEMINFO_HPP
+#define MEMINFO_HPP
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -71,4 +71,4 @@ void print_kb_format(const MemInfo *info);
 // 打印内存信息（人类可读格式）
 void print_human_format(const MemInfo *info);
 
-#endif // MEMINFO_H
+#endif // MEMINFO_HPP
