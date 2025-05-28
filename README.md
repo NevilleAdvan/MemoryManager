@@ -12,5 +12,8 @@ MemoryManager
 ```
 
 # 三、功能模块超链接
-[ProcessMemoryMonitor](https://github.com/zhangyuang/MemoryManager/blob/main/ProcessMemoryMonitor/README.md)
-[SystemMemoryManager](https://github.com/zhangyuang/MemoryManager/blob/main/SystemMemoryManager/README.md)
+## ProcessMemoryMonitor
+[ProcessMemoryMonitor](https://github.com/NevilleAdvan/MemoryManager/blob/master/ProcessMemoryMonitor/README.md)
+
+## SystemMemoryManager
+[SystemMemoryManager](https://github.com/NevilleAdvan/MemoryManager/blob/master/SystemMemoryManager/README.md)
